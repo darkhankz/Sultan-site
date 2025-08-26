@@ -26,39 +26,38 @@ body, html {
     left: 0;
     width: 100%;
     height: 100%;
-    /* Устанавливаем вашу гифку как фон */
-    background-image: url('https://i.pinimg.com/originals/be/6c/99/be6c99aabc09dd42fbc26cb579f9c06b.gif');
-    
-    /* Растягиваем фон на весь экран без искажений */
+    background-image: url('https://i.pinimg.com/originals/bb/4a/25/bb4a25693c23695cef6f8b4895ac484c.gif');
     background-size: cover;
-    
-    /* Центрируем фон */
     background-position: center;
+    filter: brightness(0.9);
 }
 
-@keyframes gradient-flow {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
-
-@keyframes sparkle {
-    0% { box-shadow: 0 0 20px rgba(255,255,255,0.1), 0 0 30px rgba(255,180,0,0.1) inset; }
-    50% { box-shadow: 0 0 25px rgba(255,255,255,0.2), 0 0 35px rgba(255,180,0,0.2) inset; }
-    100% { box-shadow: 0 0 20px rgba(255,255,255,0.1), 0 0 30px rgba(255,180,0,0.1) inset; }
-}
-
+/* ======================================= */
+/*        ИЗМЕНЕНИЕ №1 (ГЛАВНОЕ)         */
+/* ======================================= */
 .menu-item {
     position: absolute;
     text-align: center;
     color: white;
     text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+    /* --- НОВЫЕ СТРОКИ ДЛЯ ГИБКОГО РАСПОЛОЖЕНИЯ --- */
+    display: flex;
+    flex-direction: column; /* Ставим картинку и текст друг под другом */
+    justify-content: center; /* Центрируем всё содержимое по вертикали */
 }
 
+/* ======================================= */
+/*           ИЗМЕНЕНИЕ №2                */
+/* ======================================= */
 .menu-item img {
     max-width: 100%;
     filter: drop-shadow(5px 5px 15px rgba(0,0,0,0.5));
+    /* --- НОВЫЕ СТРОКИ ДЛЯ КОНТРОЛЯ РАЗМЕРА КАРТИНКИ --- */
+    max-height: 65%; /* Картинка не займет больше 65% высоты своего блока */
+    object-fit: contain; /* Сохраняет пропорции, не обрезая картинку */
+    margin: 0 auto; /* Центрирование по горизонтали */
 }
+
 
 .item-details h2, .item-details h3 {
     margin: 5px 0;
@@ -70,7 +69,6 @@ body, html {
     color: #ffd700;
 }
 
-/* Главный элемент */
 .main-item {
     width: 45%;
     animation: float-in 1s ease-out forwards, pulse 3s ease-in-out infinite 1s;
@@ -78,6 +76,7 @@ body, html {
 
 .main-item img {
     width: 100%;
+    max-height: none; /* Убираем ограничение для главного бургера */
 }
 
 .main-item .item-details {
@@ -92,30 +91,32 @@ body, html {
     font-size: 3vw;
 }
 
-/* Анимация пульсации */
 @keyframes pulse {
     0% { transform: scale(1); }
     50% { transform: scale(1.05); }
     100% { transform: scale(1); }
 }
 
+/* ======================================= */
+/*           ИЗМЕНЕНИЕ №3                */
+/* ======================================= */
 /* Позиционирование остальных элементов */
-.left-item {
-    width: 18%;
+.left-item, .right-item {
+    /* Задаем четкую высоту в % от высоты экрана, чтобы блоки не наезжали друг на друга */
+    height: 40vh; 
     animation: slide-in-left 1.2s ease-out forwards;
 }
-#iced-coffee { top: 15%; left: 8%; }
-#orange-juice { bottom: 15%; left: 8%; }
 
-.right-item {
-    width: 20%;
-    animation: slide-in-right 1.2s ease-out forwards;
-}
-#nachos { top: 15%; right: 8%; }
-#fries { bottom: 15%; right: 8%; }
+.left-item { width: 18%; }
+.right-item { width: 20%; }
+
+/* Увеличиваем отступы от краев, чтобы дать больше воздуха */
+#iced-coffee { top: 10%; left: 8%; }
+#orange-juice { bottom: 10%; left: 8%; }
+#nachos { top: 10%; right: 8%; }
+#fries { bottom: 10%; right: 8%; }
 
 
-/* Анимации появления */
 @keyframes float-in {
     from { opacity: 0; transform: translateY(50px) scale(0.9); }
     to { opacity: 1; transform: translateY(0) scale(1); }
@@ -129,8 +130,6 @@ body, html {
     to { opacity: 1; transform: translateX(0); }
 }
 
-
-/* Спецпредложение */
 .special-offer {
     position: absolute;
     top: 50%;
@@ -155,42 +154,28 @@ body, html {
     0%, 100% { transform: rotate(-15deg) scale(1); }
     10%, 30% { transform: rotate(-10deg) scale(1.05); }
     20%, 40% { transform: rotate(-20deg) scale(1.05); }
-
 }
 
-/* =============================================== */
-/*        АДАПТАЦИЯ ДЛЯ БОЛЬШИХ ЭКРАНОВ           */
-/* =============================================== */
-
-/* Правила для экранов шире 1600px (стандартные Full HD мониторы и ТВ) */
+/* АДАПТАЦИЯ ДЛЯ БОЛЬШИХ ЭКРАНОВ (остается без изменений) */
 @media (min-width: 1600px) {
-
-    /* 1. Ограничиваем максимальный размер главного элемента */
     .main-item {
-        max-width: 800px; /* Бургер не будет больше 800px в ширину */
+        max-width: 800px;
     }
-
-    /* 2. Задаем фиксированный размер шрифта, чтобы он не рос до бесконечности */
     .main-item h2 {
-        font-size: 60px; /* Вместо 3.5vw */
+        font-size: 60px;
     }
     .main-item .price-main {
-        font-size: 52px; /* Вместо 3vw */
+        font-size: 52px;
     }
-
-    /* 3. Ограничиваем боковые элементы и немного сдвигаем их к центру */
     .left-item, .right-item {
         max-width: 320px;
     }
-    
     #iced-coffee, #orange-juice {
-        left: 12%; /* Было 8%, двигаем ближе к центру */
+        left: 12%; 
     }
     #nachos, #fries {
-        right: 12%; /* Было 8%, двигаем ближе к центру */
+        right: 12%;
     }
-
-    /* 4. Ограничиваем размер шрифта у боковых элементов и акции */
     .item-details h3 {
         font-size: 28px;
     }
@@ -198,6 +183,6 @@ body, html {
         font-size: 26px;
     }
     .special-offer {
-        font-size: 22px; /* Вместо 1.2vw */
+        font-size: 22px;
     }
 }
