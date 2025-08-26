@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Анимированное меню кафе</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="menu-screen">
+        <!-- Анимированный фон -->
+        <div class="background-animation"></div>
+
+        <!-- Левая колонка - напитки -->
+        <div class="menu-item left-item" id="iced-coffee">
+            <img src="img/holod.png" alt="Холодный кофе">
+            <div class="item-details">
+                <h3>Холодный кофе</h3>
+                <p class="price">300 руб.</p>
+            </div>
+        </div>
+        <div class="menu-item left-item" id="orange-juice">
+            <img src="img/apelsinovyj-sok.png"Апельсиновый сок">
+            <div class="item-details">
+                <h3>Свежий сок</h3>
+                <p class="price">280 руб.</p>
+            </div>
+        </div>
+
+        <!-- Центральный элемент - Бургер -->
+        <div class="menu-item main-item" id="burger">
+            <img src="img/classic-beef-burger.png" alt="Большой Чизбургер">
+            <div class="item-details">
+                <h2>Большой Чизбургер</h2>
+                <p class="price-main">450 руб.</p>
+            </div>
+        </div>
+
+        <!-- Правая колонка - закуски -->
+        <div class="menu-item right-item" id="nachos">
+            <img src="img/chips-and-cheese-sauce.png" alt="Начос с соусом">
+            <div class="item-details">
+                <h3>Начос с соусом</h3>
+                <p class="price">355 руб.</p>
+            </div>
+        </div>
+        <div class="menu-item right-item" id="fries">
+            <img src="img/fries-ketch.png" alt="Картофель фри">
+            <div class="item-details">
+                <h3>Картофель фри</h3>
+                <p class="price">120 руб.</p>
+            </div>
+            <div class="special-offer">
+                <span>СПЕЦПРЕДЛОЖЕНИЕ</span>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
